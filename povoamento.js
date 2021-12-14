@@ -1,4 +1,6 @@
 //criando a coleção jogadores e inserindo jogadores nela
+db.createCollection("players");
+
 //inserindo jogadoras do cenário competitivo feminino de valorant
 db.players.insertMany([
     //b4 angels
@@ -256,10 +258,13 @@ db.players.insertMany([
     player_id: "m15"
 }]);
 
-//criando a coleção times e inserindo jogadores que já temos nela
+//criando a coleção times
+db.createCollection("times");
+//e inserindo jogadores que já temos nela
 db.times.insertOne(
     {
         name: "B4 Angels",
+        country: "brasil",
         coach: "Sonho",
         earnings: 19611,
         tournaments: 11,
@@ -277,6 +282,7 @@ db.times.insertOne(
 db.times.insertOne(
     {
         name: "Havan Liberty",
+        country: "brasil",
         coach: "Marlow",
         earnings: 16748,
         tournaments: 24,
@@ -294,6 +300,7 @@ db.times.insertOne(
 db.times.insertOne(
     {
         name: "Stars Horizon Venus",
+        country: "brasil",
         coach: "Theo",
         earnings: 7856,
         tournaments: 17,
@@ -311,6 +318,7 @@ db.times.insertOne(
 db.times.insertOne(
     {
         name: "Gamelanders Purple",
+        country: "brasil",
         coach: "Katraka",
         earnings: 35060,
         tournaments: 10,
@@ -328,6 +336,7 @@ db.times.insertOne(
 db.times.insertOne(
     {
         name: "Keyd Stars Athenas",
+        country: "brasil",
         coach: "Zezao",
         earnings: 7838,
         tournaments: 10,
@@ -345,6 +354,7 @@ db.times.insertOne(
 db.times.insertOne(
     {
         name: "Team Vikings",
+        country: "brasil",
         coach: "bzkA",
         earnings: 106110,
         tournaments: 30,
@@ -362,6 +372,7 @@ db.times.insertOne(
 db.times.insertOne(
     {
         name: "Vivo Keyd",
+        country: "brasil",
         coach: "Koy",
         earnings: 45442,
         tournaments: 28,
@@ -379,6 +390,7 @@ db.times.insertOne(
 db.times.insertOne(
     {
         name: "FVRIA Esports",
+        country: "brasil",
         coach: "Carlao",
         earnings: 65677,
         tournaments: 16,
@@ -392,3 +404,119 @@ db.times.insertOne(
         ]
     }
 )
+
+//criando a coleção campeonato (championship)
+db.createCollection("championship");
+//e inserindo alguns times já existentes nela
+db.championship.insertOne(
+    {
+        name: "Gaming Culture - Girl Power #3",
+        dt_begin: new Date("2021-11-24"),
+        dt_end: new Date("2021-11-27"),
+        sponsor: "JBL, Claro Gaming, Hearth Co., Aussie Grill",
+        host: "Leticia Motta",
+        commentator: "Babi",
+        analyst: "AMD",
+        prize: 3541,
+        teams: [
+            db.times.findOne({name: "B4 Angels"})._id,
+            db.times.findOne({name: "Havan Liberty"})._id,
+            db.times.findOne({name: "Keyd Stars Athenas"})._id,
+            db.times.findOne({name: "Stars Horizon Venus"})._id
+        ]
+    }
+)
+
+db.championship.insertOne(
+    {
+        name: "Gaming Culture - Girl Power #2",
+        dt_begin: new Date("2021-04-15"),
+        dt_end: new Date("2021-04-18"),
+        sponsor: "JBL, AOC",
+        host: "Steph",
+        commentator: "Babi",
+        analyst: "AMD",
+        prize: 3579,
+        teams: [
+            db.times.findOne({name: "B4 Angels"})._id,
+            db.times.findOne({name: "Havan Liberty"})._id,
+            db.times.findOne({name: "Keyd Stars Athenas"})._id,
+            db.times.findOne({name: "Gamelanders Purple"})._id
+        ]
+    }
+)
+
+db.championship.insertOne(
+    {
+        name: "Protocolo: Evolução",
+        dt_begin: new Date("2021-11-04"),
+        dt_end: new Date("2021-11-14"),
+        sponsor: "Buscofem, Intel, Acer",
+        host: "Tixinha",
+        commentator: "Babi",
+        analyst: "Leticia Motta",
+        prize: 17996,
+        teams: [
+            db.times.findOne({name: "B4 Angels"})._id,
+            db.times.findOne({name: "Havan Liberty"})._id,
+            db.times.findOne({name: "Keyd Stars Athenas"})._id,
+            db.times.findOne({name: "Stars Horizon Venus"})._id,
+            db.times.findOne({name: "Gamelanders Purple"})._id
+        ]
+    }
+)
+
+db.championship.insertOne(
+    {
+        name: "Copa Rakin",
+        dt_begin: new Date("2021-10-18"),
+        dt_end: new Date("2021-10-31"),
+        sponsor: "Final Level, Mad Monkey",
+        host: "Rakin",
+        commentator: "Babi",
+        analyst: "Steph",
+        prize: 7138,
+        teams: [
+            db.times.findOne({name: "B4 Angels"})._id,
+            db.times.findOne({name: "Havan Liberty"})._id,
+            db.times.findOne({name: "Keyd Stars Athenas"})._id,
+            db.times.findOne({name: "Stars Horizon Venus"})._id,
+            db.times.findOne({name: "Gamelanders Purple"})._id
+        ]
+    }
+)
+
+db.championship.insertOne(
+    {
+        name: "VALORANT Champions Tour 2021: Brazil Stage 1 Masters",
+        dt_begin: new Date("2021-03-13"),
+        dt_end: new Date("2021-03-21"),
+        sponsor: "Riot Games",
+        host: "Bida",
+        commentator: "Tixinha",
+        analyst: "Leticia Motta",
+        prize: 45538,
+        teams: [
+            db.times.findOne({name: "FVRIA Esports"})._id,
+            db.times.findOne({name: "Team Vikings"})._id,
+        ]
+    }
+)
+
+db.championship.insertOne(
+    {
+        name: "VALORANT Champions Tour 2021: Brazil Stage 3 Challengers Playoffs",
+        dt_begin: new Date("2021-08-12"),
+        dt_end: new Date("2021-08-22"),
+        sponsor: "Riot Games",
+        host: "Leticia Motta",
+        commentator: "Babi",
+        analyst: "Melão",
+        prize: 32384,
+        teams: [
+            db.times.findOne({name: "FVRIA Esports"})._id,
+            db.times.findOne({name: "Team Vikings"})._id,
+            db.times.findOne({name: "Vivo Keyd"})._id
+        ]
+    }
+);
