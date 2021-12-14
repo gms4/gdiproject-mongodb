@@ -1,9 +1,11 @@
+//dropando o database pra poder inserir tudo de novo
+db.dropDatabase();
+
 //criando a coleção jogadores e inserindo jogadores nela
 db.createCollection("players");
 
 //inserindo jogadoras do cenário competitivo feminino de valorant
 db.players.insertMany([
-    //b4 angels
 {
     name: "tayhuhu",
     country: "brasil",
@@ -35,7 +37,6 @@ db.players.insertMany([
     role: "controlador",
     player_id: "f5"
 },
-    //havan liberty
 {
     
     name: "mittens",
@@ -67,7 +68,6 @@ db.players.insertMany([
     role: "duelista/iniciador",
     player_id: "f10"
 },
-    //stars horizon
 {
     name: "ori",
     country: "brasil",
@@ -98,7 +98,6 @@ db.players.insertMany([
     role: "controlador",
     player_id: "f15"
 },
-    //gamelanders purple
 {
     name: "naxy",
     country: "brasil",
@@ -129,7 +128,6 @@ db.players.insertMany([
     role: "flex",
     player_id: "f20"
 },
-    //keyd stars athenas
 {
     name: "biazik",
     country: "brasil",
@@ -164,7 +162,6 @@ db.players.insertMany([
 
 ////inserindo jogadores do cenário competitivo masculino de valorant
 db.players.insertMany([
-    //FVRIA esports
 {
     name: "xand",
     country: "brasil",
@@ -195,7 +192,6 @@ db.players.insertMany([
     role: "flex",
     player_id: "m5"
 },
-    //vivo keyd
 {
     name: "heat",
     country: "brasil",
@@ -226,7 +222,6 @@ db.players.insertMany([
     role: "controlador",
     player_id: "m10"
 },
-    //vikings
 {
     name: "sacy",
     country: "brasil",
@@ -277,7 +272,7 @@ db.times.insertOne(
             db.players.findOne({name: "shizue"})._id,
         ]
     }
-)
+);
 
 db.times.insertOne(
     {
@@ -295,7 +290,7 @@ db.times.insertOne(
             db.players.findOne({name: "isa1"})._id,
         ]
     }
-)
+);
 
 db.times.insertOne(
     {
@@ -313,7 +308,7 @@ db.times.insertOne(
             db.players.findOne({name: "kalita"})._id,
         ]
     }
-)
+);
 
 db.times.insertOne(
     {
@@ -331,7 +326,7 @@ db.times.insertOne(
             db.players.findOne({name: "nat1"})._id,
         ]
     }
-)
+);
 
 db.times.insertOne(
     {
@@ -349,7 +344,7 @@ db.times.insertOne(
             db.players.findOne({name: "antG"})._id,
         ]
     }
-)
+);
 
 db.times.insertOne(
     {
@@ -367,7 +362,7 @@ db.times.insertOne(
             db.players.findOne({name: "frz"})._id,
         ]
     }
-)
+);
 
 db.times.insertOne(
     {
@@ -385,7 +380,7 @@ db.times.insertOne(
             db.players.findOne({name: "v1xen"})._id,
         ]
     }
-)
+);
 
 db.times.insertOne(
     {
@@ -403,7 +398,7 @@ db.times.insertOne(
             db.players.findOne({name: "mazin"})._id,
         ]
     }
-)
+);
 
 //criando a coleção campeonato (championship)
 db.createCollection("championship");
