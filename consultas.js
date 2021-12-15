@@ -20,15 +20,6 @@ db.times.find().sort({wins: -1}).pretty();
 //RENAMECOLLECTION: mudando o nome da coleção TIMES para TEAMS 
 db.times.renameCollection("teams");
 
-//MATCH e AGGREGATE e LT: listar o campeonato que foi hosteado por leticia motta e comentado por tixinha
-db.championship.aggregate([
-    {
-        $match: {
-            host: {$lt: "Leticia Motta"}
-        },
-    }
-]).pretty();
-
 //GROUP e SUM: agrupa todos os times e calcula a soma da vitória de todos
 db.teams.aggregate([
     {
@@ -42,14 +33,14 @@ db.teams.aggregate([
 ]);
 
 //GTE: retorna todos os campeonatos com premiação maior ou igual a 10000
-db.championship.find({prize: {$gte: 10000}});
+db.championship.find({prize: {$gte: 10000}}).pretty();
 
 //TEXT e SEARCH: lista todos os camponatos que possuem o nome VALORANT no nome
 db.championship.createIndex({name: "text"});
 db.championship.find({$text: {$search: "\"VALORANT\""}}).pretty();
 
 //UNSET e EXISTS: Copa Rakin foi um evento sem fins lucrativos, então não teve premiação. vamos excluí-la e listá-la
-db.championship.updateOne({name: "Copa Rakin Season 2"}, {$unset: {"prize": null}})
+db.championship.updateOne({name: "Copa Rakin Season 2"}, {$unset: {"prize": null}});
 db.championship.find({prize: {$exists: false}}).pretty();
 
 //SIZE: lista os campeonatos com 4 times
@@ -95,13 +86,32 @@ db.teams.aggregate([
     }
 ]);
 
-//FILTER: lista os campeonatos que possuem os times listados
+//ALL: lista os campeonatos que possuem os times listados
 db.championship.find({teams: {$all: [
     db.teams.findOne({name: "B4 Angels"})._id,
     db.teams.findOne({name: "Havan Liberty"})._id,
     db.teams.findOne({name: "Keyd Stars Athenas"})._id,
     db.teams.findOne({name: "Gamelanders Purple"})._id,
 ]}}).pretty();
+
+//FILTER: (deveria) listar os patrocinadores que contribuiram com mais de 10000 dolares
+//para o prêmio do campeonato
+
+db.championship.aggregate([
+    {
+       $project: {
+           _id: 0,
+           name: 1,
+           sponsor: {
+             $filter: {
+                input: "$sponsor",
+                as: "sponsors_share",
+                cond: { $gte: ["$$sponsor.prize_share", 10000]}
+            }
+          }
+       }
+    }
+ ]);
 
 //LOOKUP e LIMIT: lista 1 jogador e quais os times do seu país
 db.players.aggregate([
@@ -131,7 +141,7 @@ db.championship.updateMany({name: "Copa Rakin Season 2"}, {$addToSet:
     }   
 });
 
-//WHERE e FUNCTION: lista o time que possui os jogadores de player_id listados abaixo
+//WHERE e FUNCTION: lista o campeonato de nome Copa Rakin Season 2
 db.championship.find({$where: function() {
         return (this.name == "Copa Rakin Season 2")}
     }

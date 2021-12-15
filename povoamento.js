@@ -408,7 +408,12 @@ db.championship.insertOne(
         name: "Gaming Culture - Girl Power #3",
         dt_begin: new Date("2021-11-24"),
         dt_end: new Date("2021-11-27"),
-        sponsor: "JBL, Claro Gaming, Hearth Co., Aussie Grill",
+        sponsor: [
+            {name: "JBL", prize_share: 1000},
+            {name: "Claro Gaming", prize_share: 500},
+            {name: "Hearth Co.", prize_share: 0},
+            {name: "Aussie Grill", prize_share: 1000},
+        ],
         host: "Leticia Motta",
         commentator: "Babi",
         analyst: "AMD",
@@ -427,7 +432,10 @@ db.championship.insertOne(
         name: "Gaming Culture - Girl Power #2",
         dt_begin: new Date("2021-04-15"),
         dt_end: new Date("2021-04-18"),
-        sponsor: "JBL, AOC",
+        sponsor: [
+            {name: "JBL", prize_share: 1500},
+            {name: "AOC", prize_share: 1500}
+        ],
         host: "Steph",
         commentator: "Babi",
         analyst: "AMD",
@@ -446,7 +454,11 @@ db.championship.insertOne(
         name: "Protocolo: Evolução",
         dt_begin: new Date("2021-11-04"),
         dt_end: new Date("2021-11-14"),
-        sponsor: "Buscofem, Intel, Acer",
+        sponsor: [
+            {name: "Buscofem", prize_share: 2000},
+            {name: "Intel", prize_share: 5000},
+            {name: "Acer", prize_share: 5000}
+        ],
         host: "Tixinha",
         commentator: "Babi",
         analyst: "Leticia Motta",
@@ -466,7 +478,10 @@ db.championship.insertOne(
         name: "Copa Rakin",
         dt_begin: new Date("2021-10-18"),
         dt_end: new Date("2021-10-31"),
-        sponsor: "Final Level, Mad Monkey",
+        sponsor: [
+            {name: "Final Level", prize_share: 0},
+            {name: "Mad Monkey", prize_share: 0}
+        ],
         host: "Rakin",
         commentator: "Babi",
         analyst: "Steph",
@@ -486,7 +501,9 @@ db.championship.insertOne(
         name: "VALORANT Champions Tour 2021: Brazil Stage 1 Masters",
         dt_begin: new Date("2021-03-13"),
         dt_end: new Date("2021-03-21"),
-        sponsor: "Riot Games",
+        sponsor: [
+            {name: "Riot Games", prize_share: 25000}
+        ],
         host: "Bida",
         commentator: "Tixinha",
         analyst: "Leticia Motta",
@@ -503,7 +520,9 @@ db.championship.insertOne(
         name: "VALORANT Champions Tour 2021: Brazil Stage 3 Challengers Playoffs",
         dt_begin: new Date("2021-08-12"),
         dt_end: new Date("2021-08-22"),
-        sponsor: "Riot Games",
+        sponsor: [
+            {name: "Riot Games", prize_share: 25000}
+        ],
         host: "Leticia Motta",
         commentator: "Babi",
         analyst: "Melão",
